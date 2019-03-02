@@ -4,7 +4,7 @@
 #
 # PROGRAMMER: Taryn Sauer
 # DATE CREATED: 3/1/19
-# REVISED DATE:
+# REVISED DATE: 3/2/19
 # PURPOSE: Create a function calculates_results_stats that calculates the
 #          statistics of the results of the program run using the classifier's model
 #          architecture to classify the images. This function will use the
@@ -52,20 +52,14 @@ def calculates_results_stats(results_dic):
     for key, value in results_dic.items():
         if value[3] == 1:
             results_stats_dic['n_dogs_img'] += 1
-            if value[2] == 1:
-                results_stats_dic['n_correct_breed'] += 1
+            if value[2] == 1: results_stats_dic['n_correct_breed'] += 1
+            if value[4] == 1: results_stats_dic['n_correct_dogs'] += 1
         else:
             results_stats_dic['n_notdogs_img'] += 1
-
-        if value[4] == 1:
-            results_stats_dic['n_correct_dogs'] += 1
-        else:
-            results_stats_dic['n_correct_notdogs'] += 1
+            if value[4] == 0: results_stats_dic['n_correct_notdogs'] += 1
 
     results_stats_dic['pct_correct_dogs'] = (results_stats_dic['n_correct_dogs']/results_stats_dic['n_dogs_img']) * 100
     results_stats_dic['pct_correct_breed'] = (results_stats_dic['n_correct_breed']/results_stats_dic['n_dogs_img']) * 100
     results_stats_dic['pct_correct_notdogs'] = (results_stats_dic['n_correct_notdogs']/results_stats_dic['n_notdogs_img']) * 100
-
-    results_stats_dic['match'] = ((results_stats_dic['n_correct_dogs'] + results_stats_dic['n_correct_notdogs'])/results_stats_dic['n_images']) * 100
 
     return results_stats_dic
