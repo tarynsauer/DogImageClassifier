@@ -346,4 +346,4 @@ golden retriever is incorrectly classified as tibetan mastiff
 great pyrenees is incorrectly classified as kuvasz
 golden retriever is incorrectly classified as afghan hound, afghan
 
-** Total Elapsed Runtime: 0:0:1
+** Total Elapsed Runtime: 0:0:2
