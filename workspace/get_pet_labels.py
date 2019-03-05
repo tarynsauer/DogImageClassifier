@@ -33,7 +33,9 @@ def format_label(pet_image):
 def get_pet_labels(image_dir):
     results_dic = dict()
 
-    filename_list = listdir(image_dir)
+    filename_list = []
+    for f in listdir(image_dir):
+        if not f.startswith('.'): filename_list.append(f)
 
     for idx in range(0, len(filename_list), 1):
       results_dic[filename_list[idx]] = [format_label(filename_list[idx])]

@@ -48,6 +48,10 @@ def calculates_results_stats(results_dic):
     results_stats_dic['n_notdogs_img'] = 0
     results_stats_dic['n_correct_dogs'] = 0
     results_stats_dic['n_correct_notdogs'] = 0
+    results_stats_dic['pct_correct_dogs'] = 'N/A'
+    results_stats_dic['pct_correct_breed'] = 'N/A'
+    results_stats_dic['pct_correct_notdogs'] = 'N/A'
+    results_stats_dic['pct_match'] = 'N/A'
 
     for key, value in results_dic.items():
         if value[3] == 1:
@@ -58,8 +62,15 @@ def calculates_results_stats(results_dic):
             results_stats_dic['n_notdogs_img'] += 1
             if value[4] == 0: results_stats_dic['n_correct_notdogs'] += 1
 
-    results_stats_dic['pct_correct_dogs'] = (results_stats_dic['n_correct_dogs']/results_stats_dic['n_dogs_img']) * 100
-    results_stats_dic['pct_correct_breed'] = (results_stats_dic['n_correct_breed']/results_stats_dic['n_dogs_img']) * 100
-    results_stats_dic['pct_correct_notdogs'] = (results_stats_dic['n_correct_notdogs']/results_stats_dic['n_notdogs_img']) * 100
+    if results_stats_dic['n_dogs_img'] > 0:
+        results_stats_dic['pct_correct_dogs'] = (results_stats_dic['n_correct_dogs']/results_stats_dic['n_dogs_img']) * 100.0
+    if results_stats_dic['n_dogs_img'] > 0:
+        results_stats_dic['pct_correct_breed'] = (results_stats_dic['n_correct_breed']/results_stats_dic['n_dogs_img']) * 100.0
+    if results_stats_dic['n_notdogs_img'] > 0:
+        results_stats_dic['pct_correct_notdogs'] = (results_stats_dic['n_correct_notdogs']/results_stats_dic['n_notdogs_img']) * 100.0
+
+    total_img = results_stats_dic['n_dogs_img'] + results_stats_dic['n_notdogs_img']
+    if total_img > 0:
+        results_stats_dic['pct_match'] = (results_stats_dic['n_correct_dogs'] + results_stats_dic['n_correct_notdogs'])/total_img * 100.0
 
     return results_stats_dic

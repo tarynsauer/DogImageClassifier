@@ -32,7 +32,7 @@ def print_results(results_dic, results_stats_dic, model,
     print(f"\n** Results for {model.upper()} Model Architecture:\n")
 
     for key, value in results_stats_dic.items():
-        if 'pct' in key: print(f"{key}: {value}i%")
+        if 'pct' in key: print(f"{key}: " + "{0:.2f}".format(value) + "%")
 
     if print_incorrect_dogs:
         print("\n** Incorrect dogs:\n")
